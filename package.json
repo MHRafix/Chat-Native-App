@@ -1,21 +1,33 @@
 {
-  "name": "signal-2.0",
-  "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
-  "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
-  },
-  "dependencies": {
-    "expo": "~49.0.7",
-    "expo-status-bar": "~1.6.0",
-    "react": "18.2.0",
-    "react-native": "0.72.3"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.20.0"
-  },
-  "private": true
+	"name": "Signal-2.0",
+	"version": "1.0.0",
+	"main": "node_modules/expo/AppEntry.js",
+	"scripts": {
+		"start": "expo start",
+		"android": "expo start --android",
+		"ios": "expo start --ios",
+		"web": "expo start --web"
+	},
+	"dependencies": {
+		"@expo/vector-icons": "^13.0.0",
+		"@react-navigation/native": "^6.1.7",
+		"@react-navigation/native-stack": "^6.9.13",
+		"@rneui/base": "github:react-native-elements/react-native-elements#base",
+		"@types/firebase": "^3.2.1",
+		"@types/node": "^20.5.0",
+		"expo": "~49.0.7",
+		"expo-status-bar": "~1.6.0",
+		"firebase": "^10.2.0",
+		"react": "18.2.0",
+		"react-native": "0.72.3"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.20.0",
+		"@tsconfig/react-native": "^3.0.2",
+		"@types/jest": "^29.5.3",
+		"@types/react": "^18.2.20",
+		"@types/react-test-renderer": "^18.0.0",
+		"typescript": "^5.1.6"
+	},
+	"private": true
 }
