@@ -1,7 +1,7 @@
 // import { AntDesign, SimpleLineIcons } from '@expo/vector-icons';
 import { Avatar } from '@rneui/base';
 import { signOut } from 'firebase/auth';
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 
 import { AntDesign, SimpleLineIcons } from '@expo/vector-icons';
 import { collection, getDocs } from 'firebase/firestore';
@@ -28,7 +28,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
 		});
 	};
 
-	React.useLayoutEffect(() => {
+	useLayoutEffect(() => {
 		navigation.setOptions({
 			title: auth?.currentUser?.displayName.split(' ')[0],
 			headerStyle: {
@@ -76,17 +76,19 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
 		});
 	}, [navigation]);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		let chats = [];
 		getDocs(collection(db, 'chats'))
 			.then((res) => {
-				res.docs.forEach((doc) => chats.push(doc.data()));
+				res.docs.map((doc, idx) => {
+					chats.push({ ...doc.data(), id: doc.id });
+				});
 				onChangeChats(chats);
 			})
 			.catch((err) => alert(err.message));
 	}, [navigation]);
 
-	const enterChat = (id: string, chat: string) => {
+	const enterChat = (id: string, chat: any) => {
 		navigation.navigate('Chat', {
 			id,
 			chat,

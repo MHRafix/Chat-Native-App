@@ -1,4 +1,4 @@
-import { Button, Icon, Input } from '@rneui/base';
+import { Button, Input } from '@rneui/base';
 import { addDoc, collection } from 'firebase/firestore';
 import React, { useLayoutEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -10,6 +10,7 @@ interface AddChatScreenProps {
 
 const AddChatScreen = ({ navigation }: AddChatScreenProps) => {
 	const [input, setInput] = useState<string>();
+	const [photoURL, setPhotoURL] = useState<string>();
 
 	useLayoutEffect(() => {
 		navigation.setOptions({
@@ -21,6 +22,7 @@ const AddChatScreen = ({ navigation }: AddChatScreenProps) => {
 	const createChat = async () => {
 		await addDoc(collection(db, 'chats'), {
 			chatName: input,
+			photoURL,
 		})
 			.then(() => navigation.goBack())
 			.catch((error) => alert(error.message));
@@ -33,10 +35,13 @@ const AddChatScreen = ({ navigation }: AddChatScreenProps) => {
 				autoFocus
 				value={input}
 				onChangeText={(text) => setInput(text)}
+			/>
+			<Input
+				placeholder='Avatar Url'
+				autoFocus
+				value={photoURL}
+				onChangeText={(text) => setPhotoURL(text)}
 				onSubmitEditing={createChat}
-				leftIcon={
-					<Icon name='wechat' type='antdesign' size={24} color={'black'} />
-				}
 			/>
 
 			<Button onPress={createChat} title={'Create new Chat'} />

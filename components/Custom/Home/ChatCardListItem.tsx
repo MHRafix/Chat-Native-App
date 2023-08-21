@@ -10,7 +10,7 @@ interface UserCardProps {
 const ChatCardListItem = ({ chat, enterChat }: UserCardProps) => {
 	return (
 		<ListItem
-			onPress={() => enterChat(chat?.id, chat?.chatName)}
+			onPress={() => enterChat(chat?.id, chat)}
 			key={chat.chatName}
 			bottomDivider
 		>
